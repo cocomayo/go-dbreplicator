@@ -42,7 +42,7 @@ docker compose up -d
 Open a terminal and start the consumer service. It will connect to RabbitMQ and begin listening to the queue defined by the `--use-cases` flag.
 
 ```bash
-go run cmd/consumer/main.go --config=data/config.yaml --use-cases="pintar"
+go run cmd/consumer/main.go --config=data/config.yaml --use-cases="pintar/kaskel_transaction"
 ```
 
 ### 3. Start the Producer
@@ -50,7 +50,7 @@ go run cmd/consumer/main.go --config=data/config.yaml --use-cases="pintar"
 Open a separate terminal window and start the producer. Note: The `--use-cases` flag must perfectly match the consumer's flag so they communicate on the same RabbitMQ queue.
 
 ```bash
-go run cmd/producer/main.go --config=data/config.yaml --use-cases="pintar"
+go run cmd/producer/main.go --config=data/config.yaml --use-cases="pintar/kaskel_transaction"
 ```
 
 ## Configuration & Maintenance
