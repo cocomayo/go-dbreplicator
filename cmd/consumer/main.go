@@ -76,8 +76,8 @@ func main() {
 				return
 			}
 
-			// 3. Load Mapping Rules from data/{tenant}/mapper/from-{tenant}-{name}.yaml
-			mapperPath := fmt.Sprintf("data/monitoring-tool/mapper/%v/%s.yaml", tenant, name)
+			// 3. Load Mapping Rules from data/{tenant}/mapper/{name}.yaml
+			mapperPath := fmt.Sprintf("data/%v/mapper/%s.yaml", tenant, name)
 			mappingRules, err := mapper.Load(mapperPath)
 			if err != nil {
 				log.Printf("[Skip %s] Missing or invalid mapping at %s: %v", uc, mapperPath, err)
