@@ -60,7 +60,7 @@ func main() {
 			tenant, name := parts[0], parts[1]
 
 			safeName := strings.ReplaceAll(uc, "/", "_")
-			queueName := fmt.Sprintf("%s_%s", cfg.Broker.TopicOrQueue, safeName)
+			queueName := fmt.Sprintf("%s_consumer_%s", cfg.Broker.TopicOrQueue, safeName)
 
 			// 1. Initialize Source (RabbitMQ Queue specific to this use case)
 			src, err := broker.NewRabbitMQ(cfg.Broker.Host, cfg.Broker.Port, queueName)
