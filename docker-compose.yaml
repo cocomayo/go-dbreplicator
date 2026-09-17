@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: dbreplicator-rabbitmq
+    ports:
+      - "5672:5672"   # The standard port your Go app uses to connect
+      - "15672:15672" # The web management UI
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest

@@ -6,17 +6,15 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-// LocalConfig holds settings for mock files.
+// LocalConfig, MockConfig, DBConfig, and ConnectionConfig remain the same as before...
 type LocalConfig struct {
 	Path string `yaml:"path"`
 }
 
-// MockConfig holds settings for mock APIs.
 type MockConfig struct {
 	ApiLink string `yaml:"api_link"`
 }
 
-// DBConfig holds settings for real databases.
 type DBConfig struct {
 	Host     string `yaml:"host"`
 	Port     int    `yaml:"port"`
@@ -25,7 +23,6 @@ type DBConfig struct {
 	Database string `yaml:"database"`
 }
 
-// ConnectionConfig wraps the chosen type and its specific settings.
 type ConnectionConfig struct {
 	Type  string       `yaml:"type"`
 	Local *LocalConfig `yaml:"local,omitempty"`
@@ -33,9 +30,18 @@ type ConnectionConfig struct {
 	DB    *DBConfig    `yaml:"db,omitempty"`
 }
 
+// NEW: BrokerConfig holds the message queue connection details
+type BrokerConfig struct {
+	Type         string `yaml:"type"`
+	Host         string `yaml:"host"`
+	Port         int    `yaml:"port"`
+	TopicOrQueue string `yaml:"topic_or_queue"`
+}
+
 // AppConfig is the main configuration file.
 type AppConfig struct {
 	PollingInterval int              `yaml:"polling_interval_seconds"`
+	Broker          *BrokerConfig    `yaml:"broker,omitempty"` // Added broker pointer
 	Source          ConnectionConfig `yaml:"source"`
 	Destination     ConnectionConfig `yaml:"destination"`
 }
