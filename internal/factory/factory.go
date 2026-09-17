@@ -10,7 +10,7 @@ import (
 )
 
 // NewSource dynamically creates the extraction dependency.
-func NewSource(cfg config.ConnectionConfig) (engine.Source, error) {
+func NewSource(cfg config.ConnectionConfig, query string) (engine.Source, error) {
 	switch cfg.Type {
 	case "LOCAL":
 		if cfg.Local == nil || cfg.Local.Path == "" {
@@ -27,13 +27,13 @@ func NewSource(cfg config.ConnectionConfig) (engine.Source, error) {
 		return nil, errors.New("MOCK API source not implemented yet")
 
 	case "DB":
-		if cfg.DB == nil || cfg.DB.Host == "" || cfg.DB.User == "" {
+		if cfg.DB.Host == "" || cfg.DB.User == "" {
 			return nil, errors.New("DB source requires a complete 'db' config block")
 		}
-		// Future implementation:
-		// connString := fmt.Sprintf("oracle://%s:%s@%s:%d/%s", cfg.DB.User, cfg.DB.Password, cfg.DB.Host, cfg.DB.Port, cfg.DB.Database)
-		// return source.NewOracleSource(connString), nil
-		return nil, errors.New("DB source not implemented yet")
+		if query == "" {
+			return nil, errors.New("a business query file must be provided for DB sources")
+		}
+		return source.NewMySQLSource(&cfg.DB, query)
 
 	default:
 		return nil, errors.New("unsupported source type: " + cfg.Type)
@@ -50,12 +50,10 @@ func NewDestination(cfg config.ConnectionConfig) (engine.Destination, error) {
 		return destination.NewFileDestination(cfg.Local.Path), nil
 
 	case "DB":
-		if cfg.DB == nil || cfg.DB.Host == "" || cfg.DB.User == "" {
+		if cfg.DB.Host == "" || cfg.DB.User == "" {
 			return nil, errors.New("DB destination requires a complete 'db' config block")
 		}
-		// Future implementation: SQL Server connection logic here
-		return nil, errors.New("DB destination not implemented yet")
-
+		return destination.NewMySQLDestination(&cfg.DB)
 	default:
 		return nil, errors.New("unsupported destination type: " + cfg.Type)
 	}

@@ -1,5 +1,5 @@
 # Main application settings
-polling_interval_seconds: 5
+polling_interval_seconds: 3
 
 # Message Broker configuration
 broker:
@@ -10,7 +10,7 @@ broker:
 
 # Source database configuration
 source:
-  type: LOCAL  # Options: LOCAL, MOCK, DB
+  type: DB  # Options: LOCAL, MOCK, DB
   
   local:
     path: data/source_mock.json
@@ -20,21 +20,21 @@ source:
     
   db:
     host: localhost
-    port: 1521
-    user: oracle_admin
-    password: secret
-    database: ORCL
+    port: 3306
+    user: root
+    password: rootpassword
+    database: SourceDB
 
 # Destination database configuration
 destination:
-  type: LOCAL  # Options: LOCAL, DB
+  type: DB  # Options: LOCAL, DB
   
   local:
     path: data/dest_mock.json
     
   db:
-    host: 127.0.0.1
-    port: 1433
-    user: sa
-    password: secret
-    database: DestDB
+    host: localhost
+    port: 3307
+    user: root
+    password: rootpassword
+    database: DestinationDB

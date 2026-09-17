@@ -1,0 +1,21 @@
+mapping:
+  id: id_kaskel
+  id_server: id_server_val
+  log: nama_kaskel
+  status: status
+  area: kategori_penukaran
+  
+  # Pack everything else or specific source fields into free_text as JSON
+  free_text:
+    id_kaskel: id_kaskel
+    kode_kaskel: kode_kaskel
+    nama_kaskel: nama_kaskel
+    alamat_kaskel: alamat_kaskel
+    ket_lokasi: ket_lokasi
+    is_serambi: is_serambi
+    quota: quota
+    sisa_quota: sisa_quota
+    tanggal_operasional: tanggal_operasional
+
+  record_timestamp: created_date
+  created_at: created_date

@@ -64,11 +64,12 @@ func (r *RabbitMQ) FetchData(ctx context.Context, since time.Time) ([]engine.Rec
 	var records []engine.Record
 	batchSize := 100 // Maximum messages to pull per tick to avoid overloading memory
 
-	for i := 0; i < batchSize; i++ {
+	for range batchSize {
 		msg, ok, err := r.ch.Get(r.queue.Name, false)
 		if err != nil {
 			return nil, err
 		}
+
 		if !ok {
 			break // The queue is empty
 		}

@@ -96,6 +96,7 @@ func (e *Engine) process(ctx context.Context) {
 
 	// 3. Extract Data
 	records, err := e.source.FetchData(ctx, state.LastTimestamp)
+
 	if err != nil {
 		log.Printf("Error fetching data: %v", err)
 		return
@@ -132,7 +133,7 @@ func (e *Engine) loadState() (*State, error) {
 		}
 		return nil, err
 	}
-	
+
 	var state State
 	if err := json.Unmarshal(file, &state); err != nil {
 		return nil, err

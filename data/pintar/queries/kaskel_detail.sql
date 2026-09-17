@@ -1,0 +1,1 @@
+select * from kaskel_detail;

@@ -23,11 +23,18 @@ type DBConfig struct {
 	Database string `yaml:"database"`
 }
 
+type SourceConfig struct {
+	Type string   `yaml:"type"`
+	File string   `yaml:"file,omitempty"` // For LOCAL mock files
+	DB   DBConfig `yaml:"db,omitempty"`   // For real DBs
+	// The Query field has been removed from here
+}
+
 type ConnectionConfig struct {
 	Type  string       `yaml:"type"`
 	Local *LocalConfig `yaml:"local,omitempty"`
 	Mock  *MockConfig  `yaml:"mock,omitempty"`
-	DB    *DBConfig    `yaml:"db,omitempty"`
+	DB    DBConfig     `yaml:"db,omitempty"`
 }
 
 // NEW: BrokerConfig holds the message queue connection details

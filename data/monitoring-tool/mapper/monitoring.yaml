@@ -1,0 +1,9 @@
+# Standard Text Columns (Destination : Source)
+id: source_id
+id_server: source_server_identifier
+log: source_log_message
+status: source_status_code
+area: source_region
+record_timestamp: source_record_time
+created_at: source_creation_time
+free_text: source_free_text
