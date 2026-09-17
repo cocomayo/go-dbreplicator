@@ -1,0 +1,40 @@
+# Main application settings
+polling_interval_seconds: 5
+
+# Message Broker configuration
+broker:
+  type: RABBITMQ # Options: RABBITMQ, KAFKA
+  host: localhost
+  port: 5672
+  topic_or_queue: replication_queue
+
+# Source database configuration
+source:
+  type: LOCAL  # Options: LOCAL, MOCK, DB
+  
+  local:
+    path: data/source_mock.json
+    
+  mock:
+    api_link: http://localhost:8080/api
+    
+  db:
+    host: localhost
+    port: 1521
+    user: oracle_admin
+    password: secret
+    database: ORCL
+
+# Destination database configuration
+destination:
+  type: LOCAL  # Options: LOCAL, DB
+  
+  local:
+    path: data/dest_mock.json
+    
+  db:
+    host: 127.0.0.1
+    port: 1433
+    user: sa
+    password: secret
+    database: DestDB

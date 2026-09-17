@@ -1,0 +1,5 @@
+[
+  {"id": 1, "name": "Alice", "updated_at": "2026-09-17T10:00:00Z"},
+  {"id": 2, "name": "Bob", "updated_at": "2026-09-17T11:00:00Z"},
+  {"id": 3, "name": "Coco", "updated_at": "2026-09-17T11:03:00Z"}
+]
