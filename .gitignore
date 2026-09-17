@@ -58,14 +58,8 @@ data/state.json
 .vscode/
 *.swp
 *.swo
-.DS_Store
 */.DS_Store
 Thumbs.db
 
 # Logs
 *.log
-.DS_Store
-cmd/.DS_Store
-data/.DS_Store
-data/monitoring-tool/.DS_Store
-data/monitoring-tool/mapper/.DS_Store
