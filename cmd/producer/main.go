@@ -77,7 +77,7 @@ func main() {
 
 			// 3. Initialize Destination (RabbitMQ)
 			safeName := strings.ReplaceAll(uc, "/", "_")
-			queueName := fmt.Sprintf("%s_producer_%s", cfg.Broker.TopicOrQueue, safeName)
+			queueName := fmt.Sprintf("%s_%s", cfg.Broker.TopicOrQueue, safeName)
 
 			dest, err := broker.NewRabbitMQ(cfg.Broker.Host, cfg.Broker.Port, queueName)
 			if err != nil {
