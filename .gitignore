@@ -10,6 +10,9 @@
 *.out
 bin/
 
+# Specific configuration
+data/config.yaml
+
 # Specific compiled binaries from your cmd/ directories
 producer
 consumer
